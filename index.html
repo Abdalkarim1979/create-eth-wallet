@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create or Import Ethereum Wallet and Send Tokens</title>
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100vh;
+            margin: 0;
+            padding-top: 20px;
+        }
+        .container {
+            width: 50%;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            color: #4CAF50;
+            text-align: center;
+        }
+        form, select, button {
+            margin-bottom: 20px;
+            width: 100%;
+        }
+        .form-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            width: 30%;
+            margin-right: 10px;
+        }
+        .form-group input[type="text"], .form-group select {
+            width: 80%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #wallet, #importedWallet, #balance, #fees, #transaction, #Transaction_status {
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Create or Import Ethereum Wallet and Send Tokens</h2>
+        
+        <!-- Network Selection -->
+                <div class="form-group">
+            <label for="network">Network:</label>
+            <select id="network">
+                <option value="mainnet">Ethereum Mainnet</option>
+                <option value="holesky">Holesky Testnet</option>
+                <option value="sepolia">Sepolia Testnet</option>
+            </select>
+        </div>
+    <div id="walletdiv">
+    
+        <!-- Create Wallet Section -->
+        <button onclick="createWallet()">Create Wallet</button>
+  
+        
+        <!-- Import Wallet Section -->
+       
+        <form id="importForm">
+            <div class="form-group">
+                <label for="privateKey">Private Key:</label>
+                <input type="text" id="privateKey" name="privateKey"  required>
+            </div>
+            <button type="button" onclick="importWallet()">Import Wallet</button>
+        </form>
+    </div>
+              <div id="wallet"></div>
+              <div id="downloadWalletdiv"></div>
+              
+              
+        <!-- Check Balance Section -->
+        <button onclick="checkBalance()">Check Balance</button>
+        <div id="balance"></div>
+        
+        <!-- Send Tokens Section -->
+        <h2>Send Tokens</h2>
+        <form id="sendForm">
+            <div class="form-group">
+                <label for="toAddress">To Address:</label>
+                <input type="text" id="toAddress" name="toAddress" required>
+            </div>
+            <div class="form-group">
+                <label for="token">Token:</label>
+                <select id="token">
+                    <option value="eth">ETH</option>
+                    <option value="usdt">USDT</option>
+                    <option value="usdc">USDC</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="amount">Amount:</label>
+                <input type="text" id="amount" name="amount" value="0" required>
+            </div>
+         
+            <button type="button" onclick="SendToken()">Send</button>
+        </form>
+        <div id="transaction"></div>
+        <div id="Transaction_status"></div>
+        
+        <!-- Download Wallet Information -->
+        
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
